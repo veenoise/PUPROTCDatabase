@@ -1,0 +1,70 @@
+{% extends "home-template.html" %}
+
+{% block home %}
+<a class="nav-link" href="{{ url_for('index') }}">Home</a>
+{% endblock %}
+
+{% block staffs %}
+<a class="nav-link" href="{{ url_for('staffs') }}">Staffs</a>
+{% endblock %}
+
+{% block events %}
+<a class="nav-link active" aria-current="page" href="">Events</a>
+{% endblock %}
+
+{% block inventory %}
+<a class="nav-link" href="{{ url_for('inventory') }}">Inventory</a>
+{% endblock %}
+
+{% block logout %}
+<a class="nav-link" href="{{ url_for('login') }}">Logout</a>
+{% endblock %}
+
+{% block main %}
+<div class="container table-responsive my-5">
+  <table class="table table-hover table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+        <th scope="col">Handle</th>
+        <th scope="col">Handle</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      <tr>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}

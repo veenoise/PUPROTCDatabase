@@ -1,0 +1,26 @@
+.navbar-brand {
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 50px;
+  }
+}
+
+.navbar-toggler {
+  border: 0;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+#navbarNav {
+  justify-content: right;
+  text-align: center;
+}
+
+#submitLogin {
+  display: flex;
+  justify-content: right;
+}
