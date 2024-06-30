@@ -1,0 +1,65 @@
+/* main.css */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #E8E4C9;
+    z-index: -2;
+  }
+
+.nav {
+    background-color: maroon;
+    z-index: 1000; /* Ensure the navbar stays above other content */
+    position: relative; /* Ensure navbar positioning */
+  } 
+
+.nav-tabs .nav-link {
+    color: goldenrod; /* Changes the font color of the navigation links to white */
+  }
+
+.nav-tabs .nav-link.active {
+    background-color: #E8E4C9;
+    color: maroon; /* Ensures active tab link is also white */
+}
+
+.background-container {
+    background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgt15Hudya_KaNw6vheTRauulQB_OdsHvPodNriIqlAOK2q1kv-qN6vQtO2DIi9vZ3DUGsKHyFR82kq2_e438Iu1yXz9l-tz9gCOudExb-inKYAl4N6Jmx2rTWcdZ_yS8CCUdus-qQt_bRL/s1600/DSC_0061.JPG'); /* Background image URL */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(5px); /* Blur effect */
+    height: 100vh; /* Full viewport height */
+    position: absolute; /* Absolute positioning */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 0; /* Behind other content */
+  }
+
+/* Style for the content container */
+.container-1 {
+    position: relative; /* Relative positioning */
+    z-index: 1; /* Above background */
+    text-align: center;
+    color: maroon; /* Font color */
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Optional text shadow */
+    font-weight: 500; /* Font weight */
+    font-size: 3rem; /* Adjust to a specific pixel size or rem value */
+    padding-top: 100px; /* Adjust top padding */
+  }
+
+.nav-link.dropdown-toggle::after {
+    display: none; /* Hide default dropdown arrow */
+}
+
+.dropdown-menu {
+    right: 0; /* Align the dropdown to the right */
+    left: auto;
+}
+
+
+.title {
+    text-shadow: 3px 3px 2px rgba(128, 0, 0, 1);
+    color: white;
+}

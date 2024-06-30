@@ -1,0 +1,110 @@
+{% extends 'base-template.html' %}
+{% block equipments %}active{% endblock %}
+{% block content %}
+<!-- Button trigger modal -->
+<div class="d-flex justify-content-center p-3 pt-5 gap-3 fixed-top z-2">
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addRecord">
+    Add Record
+  </button>
+  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#updateRecord">
+    Update Record
+  </button>
+  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteRecord">
+    Delete Record
+  </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addRecord" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Record</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ url_for('equipments') }}" method="post" id="addRecordForm">
+          <input type="text" name="arg" id="addRecordArg" value="add" hidden>
+          <label for="equipment" class="form-label">Equipment</label>
+          <input type="text" class="form-control" id="equipment" aria-describedby="equipment" name="equipment" required>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" form="addRecordForm">Add Record</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="updateRecord" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Record</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ url_for('equipments') }}" method="post" id="updateRecordForm">
+          <input type="text" name="arg" id="updateRecordArg" value="update" hidden>
+          <label for="equipment" class="form-label">Equipment</label>
+          <input type="text" class="form-control" id="equipment" aria-describedby="equipment" name="equipment" required>
+          <label for="equipmentRename" class="form-label">Equipment Rename</label>
+          <input type="text" class="form-control" id="equipmentRename" aria-describedby="equipmentRename" name="equipmentRename" required>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" form="updateRecordForm">Update Record</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteRecord" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Record</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ url_for('equipments') }}" method="post" id="deleteRecordForm">
+          <input type="text" name="arg" id="deleteRecordArg" value="delete" hidden>
+          <label for="equipment" class="form-label">Equipment</label>
+          <input type="text" class="form-control" id="equipment" aria-describedby="equipment" name="equipment" required>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" form="deleteRecordForm">Delete Record</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-4 pt-1">
+  <div class="tab-pane fade show active" id="nav-equipments" role="tabpanel" aria-labelledby="nav-equipments-tab">
+    <div class="container table-responsive my-5">
+      <table class="table table-hover table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th>Equipment ID</th>
+            <th>Equipment</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          {% for i in range(rows|length) %}
+            <tr>
+              <td>{{ rows[i]['intequipmentid'] }}</td>
+              <td>{{ rows[i]['strequipment'] }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

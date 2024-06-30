@@ -1,0 +1,210 @@
+{% extends 'base-template.html' %}
+{% block cadets %}active{% endblock %}
+{% block content %}
+<!-- Button trigger modal -->
+<div class="d-flex justify-content-center p-3 pt-5 gap-3 fixed-top z-2">
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addRecord">
+    Add Record
+  </button>
+  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#updateRecord">
+    Update Record
+  </button>
+  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteRecord">
+    Delete Record
+  </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addRecord" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Record</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ url_for('cadets') }}" method="post" id="addRecordForm">
+          <input type="text" name="arg" id="addRecordArg" value="add" hidden>
+          <label for="firstName" class="form-label">First Name</label>
+          <input type="text" class="form-control" id="firstName" aria-describedby="firstName" name="firstName" required>
+          <label for="middleName" class="form-label">Middle Name</label>
+          <input type="text" class="form-control" id="middleName" aria-describedby="middleName" name="middleName">
+          <label for="surName" class="form-label">Surname</label>
+          <input type="text" class="form-control" id="surName" aria-describedby="surName" name="surName" required>
+          <label for="studentNumber" class="form-label">Student Number</label>
+          <input type="text" class="form-control" id="studentNumber" aria-describedby="studentNumber" name="studentNumber" required>
+          <label for="address" class="form-label">Address</label>
+          <input type="text" class="form-control" id="address" aria-describedby="address" name="address" required>
+          <label for="dateOfBirth" class="form-label">Date of Birth</label>
+          <input type="date" class="form-control" id="dateOfBirth" aria-describedby="dateOfBirth" name="dateOfBirth" required>
+          <label for="dateOfEnrollment" class="form-label">Date of Enrollment</label>
+          <input type="date" class="form-control" id="dateOfEnrollment" aria-describedby="dateOfEnrollment" name="dateOfEnrollment" required>
+          <label for="course" class="form-label">Course</label>
+          <select class="form-select" aria-label="Default select example" name="course" required>
+            <option value="" selected disabled hidden>-- Select Course --</option>
+            {% for i in range(courses|length) %}
+              <option value="{{ courses[i]['intcourseid'] }}">{{ courses[i]['strcoursename'] }}</option>
+            {% endfor %}
+          </select>
+          <label for="enrollmentStatus" class="form-label">Enrollment Status</label>
+          <select class="form-select" aria-label="Default select example" name="enrollmentStatus" required>
+            <option value="" selected disabled hidden>-- Select Enrollment Status --</option>
+            {% for i in range(enrollment_status|length) %}
+              <option value="{{ enrollment_status[i]['intenrollmentstatusid'] }}">{{ enrollment_status[i]['strenrollmentstatus'] }}</option>
+            {% endfor %}
+          </select>
+          <label for="rank" class="form-label">Rank</label>
+          <select class="form-select" aria-label="Default select example" name="rank" required>
+            <option value="" selected disabled hidden>-- Select Rank --</option>
+            {% for i in range(rank|length) %}
+              <option value="{{ rank[i]['intrankid'] }}">{{ rank[i]['strrank'] }}</option>
+            {% endfor %}
+          </select>
+          <label for="platoon" class="form-label">Platoon</label>
+          <select class="form-select" aria-label="Default select example" name="platoon" required>
+            <option value="" selected disabled hidden>-- Select Platoon --</option>
+            {% for i in range(platoon|length) %}
+              <option value="{{ platoon[i]['intplatoonid'] }}">{{ platoon[i]['strplatoonname'] }}</option>
+            {% endfor %}
+          </select>
+          <label for="role" class="form-label">Role</label>
+          <select class="form-select" aria-label="Default select example" name="role">
+            <option value="" selected>-- Select Role --</option>
+            {% for i in range(role|length) %}
+              <option value="{{ role[i]['introleid'] }}">{{ role[i]['strrolename'] }}</option>
+            {% endfor %}
+          </select>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" form="addRecordForm">Add Record</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="updateRecord" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Record</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ url_for('cadets') }}" method="post" id="updateRecordForm">
+          <input type="text" name="arg" id="updateRecordArg" value="update" hidden>
+          <label for="studentNumber" class="form-label">Student Number</label>
+          <input type="text" class="form-control" id="studentNumber" aria-describedby="studentNumber" name="studentNumber" required>
+          <label for="dateOfEnrollment" class="form-label">Date of Enrollment</label>
+          <input type="date" class="form-control" id="dateOfEnrollment" aria-describedby="dateOfEnrollment" name="dateOfEnrollment" required>
+          <label for="course" class="form-label">Course</label>
+          <select class="form-select" aria-label="Default select example" name="course" required>
+            <option value="" selected disabled hidden>-- Select Course --</option>
+            {% for i in range(courses|length) %}
+              <option value="{{ courses[i]['intcourseid'] }}">{{ courses[i]['strcoursename'] }}</option>
+            {% endfor %}
+          </select>
+          <label for="enrollmentStatus" class="form-label">Enrollment Status</label>
+          <select class="form-select" aria-label="Default select example" name="enrollmentStatus" required>
+            <option value="" selected disabled hidden>-- Select Enrollment Status --</option>
+            {% for i in range(enrollment_status|length) %}
+              <option value="{{ enrollment_status[i]['intenrollmentstatusid'] }}">{{ enrollment_status[i]['strenrollmentstatus'] }}</option>
+            {% endfor %}
+          </select>
+          <label for="rank" class="form-label">Rank</label>
+          <select class="form-select" aria-label="Default select example" name="rank" required>
+            <option value="" selected disabled hidden>-- Select Rank --</option>
+            {% for i in range(rank|length) %}
+              <option value="{{ rank[i]['intrankid'] }}">{{ rank[i]['strrank'] }}</option>
+            {% endfor %}
+          </select>
+          <label for="platoon" class="form-label">Platoon</label>
+          <select class="form-select" aria-label="Default select example" name="platoon" required>
+            <option value="" selected disabled hidden>-- Select Platoon --</option>
+            {% for i in range(platoon|length) %}
+              <option value="{{ platoon[i]['intplatoonid'] }}">{{ platoon[i]['strplatoonname'] }}</option>
+            {% endfor %}
+          </select>
+          <label for="role" class="form-label">Role</label>
+          <select class="form-select" aria-label="Default select example" name="role">
+            <option value="" selected>-- Select Role --</option>
+            {% for i in range(role|length) %}
+              <option value="{{ role[i]['introleid'] }}">{{ role[i]['strrolename'] }}</option>
+            {% endfor %}
+          </select>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" form="updateRecordForm">Update Record</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteRecord" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Record</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ url_for('cadets') }}" method="post" id="deleteRecordForm">
+          <input type="text" name="arg" id="deleteRecordArg" value="delete" hidden>
+          <label for="studentNumber" class="form-label">Student Number</label>
+          <input type="text" class="form-control" id="studentNumber" aria-describedby="studentNumber" name="studentNumber" required>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" form="deleteRecordForm">Delete Record</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-2 pt-1">
+  <div class="tab-pane fade show active" id="nav-cadets" role="tabpanel" aria-labelledby="nav-cadets-tab">
+    <div class="container table-responsive my-5">
+      <table class="table table-hover table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th>Cadet ID</th>
+            <th>First Name</th>
+            <th>Middle Name</th>
+            <th>Surname</th>
+            <th>Student No.</th>
+            <th>Date of Birth</th>
+            <th>Course</th>
+            <th>Enrollment Status</th>
+            <th>Rank</th>
+            <th>Platoon</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          {% for i in range(rows|length) %}
+            <tr>
+              <td>{{ rows[i]['intcadetid'] }}</td>
+              <td>{{ rows[i]['strfirstname'] }}</td>
+              <td>{{ rows[i]['strmiddlename'] }}</td>
+              <td>{{ rows[i]['strsurname'] }}</td>
+              <td>{{ rows[i]['strstudentnumber'] }}</td>
+              <td>{{ rows[i]['datdateofbirth'] }}</td>
+              <td>{{ rows[i]['strcoursename'] }}</td>
+              <td>{{ rows[i]['strenrollmentstatus'] }}</td>
+              <td>{{ rows[i]['strrank'] }}</td>
+              <td>{{ rows[i]['strplatoonname'] }}</td>
+              <td>{{ rows[i]['strrolename'] }}</td>
+            </tr>
+          {% endfor %}  
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
