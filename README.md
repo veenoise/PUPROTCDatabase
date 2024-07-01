@@ -34,9 +34,10 @@
     ```
     SESSION_SECRET=b'something_string_of_type_byte'
     HASHING_SALT=ThisIsAStringForTheSalt
+    DATABASE_URL=postgresql://user:password@network:port/puprotcdatabase
     ```
 
-5. You also need to have a sqlite database named dbROTC.db. Final version will have the dbROTC.db file, but for now, just to be safe, we will not publish it. But the contents of this database are tblAccounts(intAccountId, strUsername, strPassword). The password you must enter in this database is the output of the hashing algorithm inside the app.py:
+5. You also need to have a puprotcdatabase postgresql database. The password you must enter in this database is the output of the hashing algorithm inside the app.py:
 
     ```
     HASHING_ITERATION=600_000
@@ -46,5 +47,5 @@
 6. Run the flask app in debug mode:
 
     ```
-    flask --app app.py run --debug
+    python app.py
     ```
